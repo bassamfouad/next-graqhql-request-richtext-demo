@@ -30,7 +30,11 @@ export async function getStaticProps({ params }) {
     { slug: params?.slug }
   );
   return {
-    props: { data: gqlResponse?.allBlogArticle?.edges?.[0]?.node }, // will be passed to the page component as props
+    props: {
+      data: gqlResponse?.allBlogArticle?.edges?.[0]?.node
+        ? gqlResponse.allBlogArticle.edges?.[0].node
+        : null,
+    }, // will be passed to the page component as props
   };
 }
 export async function getStaticPaths() {
